@@ -35,8 +35,9 @@ namespace com.sergio
                 .CrossApplySqlServerQuery("get jobs", o => o
                     .FromQuery("select j.* from dbo.Jobs as j")
                     .WithMapping<Job>())
-                // .Do("show job on console", j => Console.WriteLine($"{j.Id} - {j.Name}"))
-                .Do("uppercase job name", j => )
+                .Do("show job on console", j => Console.WriteLine($"{j.Id} - {j.Name}"))
+                .Fix("changing value ", j => j
+                    .FixProperty(j => j.Name).AlwaysWith(j => j.Name.ToUpper()))
                 .SqlServerSave("save in DB", job => job
                     .ToTable("dbo.Jobs_Target"));
         }
@@ -56,5 +57,5 @@ namespace com.sergio
         public string Name { get; set; }
         public bool Active { get; set; }
         public string ClientId { get; set; }
-    }    
+    }
 }
