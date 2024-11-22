@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "etl-test": {
+      "commandName": "Project",
+      "commandLineArgs": "test"
+    }
+  }
+}
